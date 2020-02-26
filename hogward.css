@@ -3,3 +3,145 @@
   padding: 0;
   box-sizing: border-box;
 }
+@import url('https://fonts.googleapis.com/css?family=Lacquer&display=swap');
+
+
+:root {
+  --primary-color: grey;
+  --primary-img: url(imgs/Hufflepuff.png);
+  --theme-gryffindor-color: red;
+  --theme-hufflepuff-color: yellow;
+  --theme-ravenclaw-color: blue;
+  --theme-slytherin-color:green);
+}
+
+.modal-background[data-theme="Gryffindor"] {
+  --primary-color: red);
+  --primary-img: url(logo/gryffindor.jpg);
+}
+.modal-background[data-theme="Hufflepuff"] {
+  --primary-color: yellow;
+  --primary-img: url(logo/hufflepuff.jpg);
+}
+
+.modal-background[data-theme="Ravenclaw"] {
+  --primary-color: blue;
+  --primary-img: url(logo/ravenclaw.jpg);
+}
+
+.modal-background[data-theme="Slytherin"] {
+  --primary-color: green;
+  --primary-img: url(logo/slytherin.jpg);
+}
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(logo/bg.jpg);
+  height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+}
+body {
+  font-family: 'Lacquer', sans-serif;
+}
+section.student{
+  text-align: center;
+}
+section.student{
+  margin-left: auto;
+  margin-right: auto;
+  /* display: grid; */
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1em;
+
+}
+
+section.student > div {
+  color: #66fcf1;
+  font-size: 1.6vw;
+  padding: 1em;
+}
+div.house{
+  color:burlywood;
+}
+
+button {
+  width: 100px;
+  height: 20px;
+  margin-top: 12px;
+  color: #0c0a32;
+  background-color: #fff;
+  font-family: "Avenir", sans-serif;
+  border: solid 0.5px #0c0a32;
+  border-radius: 5px;
+  box-shadow: inset 0 0 15px rgba(207, 212, 205, 0.9);
+  cursor: pointer;
+}
+button:hover {
+  color: #fff;
+  background-color: #0c0a32;
+  border: solid 0.5px #fff;
+}
+
+/* Modal */
+.hide {
+  display: none;
+}
+.modal-background {
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.modal-content {
+  /*  background-image: url(imgs/Hufflepuff.png); */
+  background-image: var(--primary-img);
+  background-color: var(--primary-color);
+  background-repeat: no-repeat;
+  background-size: auto;
+  border: 1.5px solid #fff;
+  margin: 0 auto;
+  padding: 2.5em;
+  max-width: 100%;
+  width: 700px;
+  height: 300px;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+.modal-name {
+  display: block;
+  float: right;
+  font-family: "Parry Hotter", "Times New Roman";
+  color: #fff;
+  font-size: 3em;
+  margin-right: 20px;
+}
+.modal-description {
+  display: block;
+  text-align: right;
+  font-family: "Avenir", "Times New Roman";
+  color: #fff;
+  font-size: 2.5em;
+  margin-right: 20px;
+  margin-left: 300px;
+}
+p.modal-name{
+  text-align: center;
+  color: blueviolet;
+}
+p.modal-house{
+  color:crimson;
+  font-size: 3vw;
+}
