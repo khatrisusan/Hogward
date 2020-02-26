@@ -8,7 +8,7 @@
 
 :root {
   --primary-color: grey;
-  --primary-img: url(imgs/Hufflepuff.png);
+  --primary-img: url(imgs/hufflepuff.jpg);
   --theme-gryffindor-color: red;
   --theme-hufflepuff-color: yellow;
   --theme-ravenclaw-color: blue;
@@ -17,21 +17,21 @@
 
 .modal-background[data-theme="Gryffindor"] {
   --primary-color: red);
-  --primary-img: url(logo/gryffindor.jpg);
+  --primary-img: url(imgs/gryffindor.jpg);
 }
 .modal-background[data-theme="Hufflepuff"] {
   --primary-color: yellow;
-  --primary-img: url(logo/hufflepuff.jpg);
+  --primary-img: url(imgs/hufflepuff.jpg);
 }
 
 .modal-background[data-theme="Ravenclaw"] {
   --primary-color: blue;
-  --primary-img: url(logo/ravenclaw.jpg);
+  --primary-img: url(imgs/ravenclaw.jpg);
 }
 
 .modal-background[data-theme="Slytherin"] {
   --primary-color: green;
-  --primary-img: url(logo/slytherin.jpg);
+  --primary-img: url(imgs/slytherin.jpg);
 }
 
 
@@ -42,7 +42,7 @@
     box-sizing: border-box;
 }
 body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(logo/bg.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(imgs/bg.jpg);
   height: 100vh;
   background-size: cover;
   background-position: center center;
