@@ -3,66 +3,62 @@
   padding: 0;
   box-sizing: border-box;
 }
-@import url('https://fonts.googleapis.com/css?family=Lacquer&display=swap');
-
+@import url("https://fonts.googleapis.com/css?family=Lacquer&display=swap");
 
 :root {
   --primary-color: grey;
-  --primary-img: url(imgs/hufflepuff.jpg);
+  /*  --primary-img: url(imgs/hufflepuff.jpg); */
   --theme-gryffindor-color: red;
   --theme-hufflepuff-color: yellow;
   --theme-ravenclaw-color: blue;
-  --theme-slytherin-color:green);
+  --theme-slytherin-color: green;
 }
 
 .modal-background[data-theme="Gryffindor"] {
-  --primary-color: red);
-  --primary-img: url(imgs/gryffindor.jpg);
+  --primary-color: red;
+  /*   --primary-img: url(imgs/gryffindor.jpg); */
 }
 .modal-background[data-theme="Hufflepuff"] {
   --primary-color: yellow;
-  --primary-img: url(imgs/hufflepuff.jpg);
+  /*   --primary-img: url(imgs/hufflepuff.jpg); */
 }
 
 .modal-background[data-theme="Ravenclaw"] {
   --primary-color: blue;
-  --primary-img: url(imgs/ravenclaw.jpg);
+  /*  --primary-img: url(imgs/ravenclaw.jpg); */
 }
 
 .modal-background[data-theme="Slytherin"] {
   --primary-color: green;
-  --primary-img: url(imgs/slytherin.jpg);
+  /*  --primary-img: url(imgs/slytherin.jpg); */
 }
 
-
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(imgs/bg.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(imgs/bg.jpg);
   height: 100vh;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-
 }
 body {
-  font-family: 'Lacquer', sans-serif;
+  font-family: "Lacquer", sans-serif;
 }
-section.student{
+section.student {
   text-align: center;
 }
-section.student{
+section.student {
   margin-left: auto;
   margin-right: auto;
   /* display: grid; */
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1em;
-
 }
 
 section.student > div {
@@ -70,8 +66,8 @@ section.student > div {
   font-size: 1.6vw;
   padding: 1em;
 }
-div.house{
-  color:burlywood;
+div.house {
+  color: burlywood;
 }
 
 button {
@@ -92,7 +88,8 @@ button:hover {
   border: solid 0.5px #fff;
 }
 
-/* Modal */
+/******************************* 
+MODAL **************************/
 .hide {
   display: none;
 }
@@ -137,11 +134,17 @@ button:hover {
   margin-right: 20px;
   margin-left: 300px;
 }
-p.modal-name{
+p.modal-name {
   text-align: center;
   color: blueviolet;
 }
-p.modal-house{
-  color:crimson;
+p.modal-house {
+  color: crimson;
   font-size: 3vw;
+}
+img.modal-image {
+  border: 1px solid #3d373a;
+  border-radius: 20px;
+  width: 150px;
+  height: auto;
 }
