@@ -38,6 +38,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+header {
+  color: aliceblue;
+  text-align: center;
+  font-size: 100%;
+}
 body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(imgs/bg.jpg);
@@ -50,18 +55,21 @@ body {
 body {
   font-family: "Lacquer", sans-serif;
 }
-section.student {
+.grid {
+  display: grid;
   text-align: center;
-}
-section.student {
-  margin-left: auto;
-  margin-right: auto;
-  /* display: grid; */
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 1em;
+  border: 1px solid rgb(255, 3, 3);
+  grid-gap: 1rem;
+  color: rgb(35, 21, 114);
 }
-
-section.student > div {
+.box {
+  color: aliceblue;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: 150%;
+}
+.grid > div {
   color: #66fcf1;
   font-size: 1.6vw;
   padding: 1em;

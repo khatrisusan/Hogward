@@ -61,32 +61,46 @@ function preapareObject(jsonObject) {
     );
     letter = letter.replace(student.nickname, " ");
     student.nickname = student.nickname.trim();
-    letter = letter.trim();
   }
-  /*     student.firstName = student_fullname.substring(
-      0,
-      student_fullname.indexOf(" ")
-    );
-    student.lastName = student_fullname.substring(
-      student_fullname.lastIndexOf(" ")
-    );
-    student.middleName = student_fullname.substring(
-      student_fullname.indexOf(" ") + 1,
-      student_fullname.lastIndexOf(" ")
-    ); */
+  letter = letter.trim();
 
-  //jsonObject.fullname[hypen + 1]
-  //.indexOf(searchTerm);
-  //space count
-  /*  var my_string = "John Doe's iPhone6";
-var spaceCount = (my_string.split(" ").length - 1);
-console.log(spaceCount) */
+  student.fullname = letter;
   const noOfSpaces = letter.split(" ").length - 1;
   if (noOfSpaces > 0) {
+    student.firstname = letter.substring(0, letter.indexOf(" ")); //letter.substring(0, indexOf(" ") )
     student.firstname =
-      letter[0].toUpperCase() + letter.substring(1, letter.indexOf(" ")); //letter.substring(0, indexOf(" ") )
+      student.firstname[0].toUpperCase() +
+      letter.substring(1, letter.indexOf(" ")).toLowerCase();
+  } else if (!noOfSpaces == 0) {
+    student.firstname =
+      letter[0].toUpperCase() + letter.substring(1, -1).toLowerCase();
+  }
+  //if hypen true
+  /*   if (letter.search("-") == true) {
+    student.lastname =
+      letter[letter.indexOf(" ")].toUpperCase +
+      letter.substring(indexOf(" ") + 1, indexOf("-")).toLowerCase();
+  } */
+  if (letter.search("-") == true) {
+    student.lastname = letter.substring(letter.lastIndexOf("-") + 1);
+    student.lastname[0].toUpperCase() +
+      student.lastname.substring(1, -1).toLowerCase();
+    student.middlename = letter.substring(
+      letter.indexOf(" ") + 1,
+      letter.lastIndexOf("-")
+    );
+    student.middlename[0].toUpperCase() +
+      student.middlename.substring(1, -1).toLowerCase();
   } else {
-    student.firstname = letter;
+    student.lastname = letter.substring(letter.lastIndexOf(" ") + 1);
+    student.lastname[0].toUpperCase() +
+      student.lastname.substring(1, -1).toLowerCase();
+    student.middlename = letter[
+      letter.indexOf(" ") + 1
+    ].toUpperCase(); /* +
+      letter
+        .substring(letter.indexOf(" ") + 2, letter.lastIndexOf(" "))
+        .toLowerCase(); */
   }
 
   if (noOfSpaces == 1) {
@@ -97,7 +111,25 @@ console.log(spaceCount) */
       letter.lastIndexOf(" ")
     );
   }
-  student.lastname = letter.substring(letter.lastIndexOf(" ") + 1);
+  if (noOfSpaces == 0) {
+    student.firstname = letter;
+    student.middlename = "";
+    student.lastname = "";
+  }
+  if (noOfSpaces == 1) {
+    student.lastname = letter.substring(letter.lastIndexOf(" ") + 1);
+    student.lastname =
+      student.lastname[0].toUpperCase() +
+      letter.substring(letter.lastIndexOf(" ") + 2).toLowerCase();
+  }
+  if (noOfSpaces == 2) {
+    student.middlename =
+      letter[letter.indexOf(" ") + 1].toUpperCase() +
+      letter
+        .substring(letter.indexOf(" ") + 2, letter.lastIndexOf(" "))
+        .toLowerCase();
+  }
+
   return student;
 }
 
@@ -117,10 +149,13 @@ function showStudent(student) {
   console.log(student);
   let template = document.querySelector("template").content;
   const copy = template.cloneNode(true);
-  copy.querySelector(".firstName").textContent = student.firstname; //(student.firstname)+" "+student.middlename + " "+student.lasttname
-  copy.querySelector(".middleName").textContent = student.middlename;
-  copy.querySelector(".lastName").textContent = student.lastname;
-  copy.querySelector(".nickName").textContent = student.nickname;
+  copy.querySelector(".fullName span.one").textContent = student.firstname;
+  copy.querySelector(".fullName span.two").textContent = student.middletname;
+  copy.querySelector(".fullName span.three").textContent = student.lastname;
+  //(student.firstname)+" "+student.middlename + " "+student.lasttname
+  //copy.querySelector(".middleName").textContent = student.middlename;
+  //copy.querySelector(".lastName").textContent = student.lastname;
+  //copy.querySelector(".nickName").textContent = student.nickname;
 
   //copy.querySelector(".gender").textContent = student.gender;
   copy.querySelector(".house").textContent = student.house;
@@ -137,6 +172,7 @@ function showStudent(student) {
     console.log(students);
 
     modal.querySelector(".modal-name").textContent = students.fullname;
+    let fullname = students.fullname;
     modal.querySelector(".modal-house").textContent = students.house;
     modal.dataset.theme = students.house;
     let logo = modal.querySelector("img.modal-image");
@@ -146,7 +182,14 @@ function showStudent(student) {
       ("imgs/" + students.house.toLowerCase() + ".jpg") |
       ("imgs/" + students.house + ".jpg"); */
     modal.classList.remove("hide");
+    return fullname;
   }
 
   document.querySelector("main").appendChild(copy);
+}
+//SORT
+let sortBtn = document.querySelector("button.sort");
+sortBtn.addEventListener("click", sortFunc);
+function sortFunc(fullname) {
+  fullname.sort();
 }
