@@ -145,12 +145,18 @@ MODAL **************************/
 p.modal-name {
   text-align: center;
   color: blueviolet;
+  font-size: 2.5rem;
 }
 p.modal-house {
   color: crimson;
   font-size: 3vw;
 }
-img.modal-image {
+img.student-image {
+  border: 1px solid #3d373a;
+  border-radius: 20px;
+}
+img.crest-image {
+  float: right;
   border: 1px solid #3d373a;
   border-radius: 20px;
   width: 150px;

@@ -1,5 +1,6 @@
 "use strict";
 window.addEventListener("DOMContentLoaded", init);
+let bloodArray = [];
 let allStudents = [];
 // The prototype for all students:
 const Student = {
@@ -8,7 +9,8 @@ const Student = {
   lastname: "",
   nickname: "",
   photo: "",
-  house: ""
+  house: "",
+  blood: ""
 };
 
 const settings = {
@@ -20,6 +22,7 @@ const settings = {
 function init() {
   console.log("ready");
   fetchStudentList();
+  fetchFamilyList();
 }
 async function fetchStudentList() {
   const response = await fetch(
@@ -30,6 +33,19 @@ async function fetchStudentList() {
   // when loaded, prepare data objects
   prepareObjects(jsonData);
 }
+async function fetchFamilyList() {
+  const res = await fetch("http://petlatkea.dk/2020/hogwarts/families.json");
+  const jsonData = await res.json().then(bloodSplit);
+
+  // when loaded, prepare data objects
+}
+function bloodSplit(bloods) {
+  bloodArray = bloods;
+  console.log(bloodArray);
+  let Pure = bloodArray.pure;
+  let Half = bloodArray.half;
+  console.log(Half);
+}
 
 function prepareObjects(jsonData) {
   allStudents = jsonData.map(preapareObject);
@@ -38,6 +54,7 @@ function prepareObjects(jsonData) {
 }
 function preapareObject(jsonObject) {
   const student = Object.create(Student);
+
   //define new prototype
   //DO TRIM SPILIT AND BLAH BLAH.......string/substring or substr/indexof lastindexof
   const houseName = jsonObject.house.trim();
@@ -55,6 +72,7 @@ function preapareObject(jsonObject) {
 
   student.nickname = "";
   if (letter.indexOf('"') != -1) {
+    student.nickname = true;
     student.nickname = letter.substring(
       letter.indexOf('"') - 1,
       letter.lastIndexOf('"') + 2
@@ -129,7 +147,17 @@ function preapareObject(jsonObject) {
         .substring(letter.indexOf(" ") + 2, letter.lastIndexOf(" "))
         .toLowerCase();
   }
-
+  function bloodSplit(bloods) {
+    bloodArray = bloods;
+    console.log(bloodArray);
+    let Pure = bloodArray.pure;
+    let Half = bloodArray.half;
+    if (bloodArray.pure.some(blood => blood.pure === student.lastname)) {
+      alert("Object found inside the array.");
+    } else {
+      alert("Object not found.");
+    }
+  }
   return student;
 }
 
@@ -171,12 +199,26 @@ function showStudent(student) {
   function showDetails(students) {
     console.log(students);
 
-    modal.querySelector(".modal-name").textContent = students.fullname;
+    modal.querySelector(".modal-name").textContent =
+      students.firstname + " " + student.middlename + " " + student.lastname;
     let fullname = students.fullname;
-    modal.querySelector(".modal-house").textContent = students.house;
+    modal.querySelector(".modal-gender span").textContent = student.gender;
+    if (student.nickname == true) {
+      modal.querySelector(
+        ".modal-nickname span"
+      ).textContent = `Nickname : ${student.nickname}`;
+    }
+    modal.querySelector(".modal-house span").textContent = students.house;
     modal.dataset.theme = students.house;
-    let logo = modal.querySelector("img.modal-image");
+    let logo = modal.querySelector("img.crest-image");
     logo.src = "imgs/" + students.house + ".jpg";
+    let image = modal.querySelector("img.student-image");
+    image.src =
+      "images/" +
+      student.lastname.toLowerCase() +
+      "_" +
+      student.firstname[0] +
+      ".png";
 
     /*   OR STATEMENT
       ("imgs/" + students.house.toLowerCase() + ".jpg") |
@@ -191,5 +233,5 @@ function showStudent(student) {
 let sortBtn = document.querySelector("button.sort");
 sortBtn.addEventListener("click", sortFunc);
 function sortFunc(fullname) {
-  fullname.sort();
+  letter.sort();
 }
