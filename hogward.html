@@ -8,7 +8,30 @@
   </head>
   <body>
     <header><h1>Hogward Batch 1991</h1></header>
-    <button class="sort">SORT</button>
+    <div class="wrap">
+      <div class="filter-Con">
+        <label for="filter">Filter by:</label>
+        <select name="filter" data-field="filter" data-filter="All">
+          <option selected="true">All</option>
+          <option>Gryffindor</option>
+          <option>Slytherin</option>
+          <option>Hufflepuff</option>
+          <option>Ravenclaw</option>
+          <option>Expelled</option>
+          <option>Prefects</option>
+          <option>Inquisitorial</option>
+        </select>
+      </div>
+      <div class="sort-Con">
+        <label for="sort">Sort by:</label>
+        <select name="sort" data-field="sort">
+          <option data-field="firstName">First Name</option>
+          <option data-field="lastName">Last Name</option>
+          <option data-field="house">House</option>
+          <option data-field="blood">Blood</option>
+        </select>
+      </div>
+    </div>
     <main></main>
     <footer></footer>
     <!-- TEMPLATE -->
@@ -33,6 +56,9 @@
         <p class="modal-nickname"><span></span></p>
         <p class="modal-gender">Gender : <span></span></p>
         <p class="modal-house">House : <span></span></p>
+        <button class="prefect">Make Prefect</button>
+        <button class="expel">Expel</button>
+        <button class="inquis">Add to Inquisitorial</button>
       </div>
     </div>
     <script src="hogward.js"></script>

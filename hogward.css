@@ -79,8 +79,9 @@ div.house {
 }
 
 button {
-  width: 100px;
-  height: 20px;
+  width: auto;
+  height: 30px;
+  padding: 5px;
   margin-top: 12px;
   color: #0c0a32;
   background-color: #fff;
@@ -161,4 +162,14 @@ img.crest-image {
   border-radius: 20px;
   width: 150px;
   height: auto;
+}
+.wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+button {
+  border: solid #000;
+  border-radius: 20px;
+  background-color: #fff;
+  color: black;
 }

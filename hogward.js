@@ -10,17 +10,16 @@ const Student = {
   nickname: "",
   photo: "",
   house: "",
-  blood: ""
+  blood: "",
 };
 
 const settings = {
   filter: null,
   sortBy: null,
-  sortDir: "asc"
+  sortDir: "asc",
 };
 
 function init() {
-  console.log("ready");
   fetchStudentList();
   fetchFamilyList();
 }
@@ -54,9 +53,6 @@ function prepareObjects(jsonData) {
 }
 function preapareObject(jsonObject) {
   const student = Object.create(Student);
-
-  //define new prototype
-  //DO TRIM SPILIT AND BLAH BLAH.......string/substring or substr/indexof lastindexof
   const houseName = jsonObject.house.trim();
   student.house =
     houseName.substring(0, 1).toUpperCase() +
@@ -65,10 +61,7 @@ function preapareObject(jsonObject) {
   student.gender =
     genderName.substring(0, 1).toUpperCase() +
     genderName.substring(1).toLowerCase();
-  //student.gender = jsonObject.gender;
-  //(sentence[1].toUpperCase());
-  //const hypen = jsonObject.fullname.indexOf("-");
-  let letter = jsonObject.fullname; //.replace('dog', 'monkey')
+  let letter = jsonObject.fullname;
 
   student.nickname = "";
   if (letter.indexOf('"') != -1) {
@@ -93,12 +86,6 @@ function preapareObject(jsonObject) {
     student.firstname =
       letter[0].toUpperCase() + letter.substring(1, -1).toLowerCase();
   }
-  //if hypen true
-  /*   if (letter.search("-") == true) {
-    student.lastname =
-      letter[letter.indexOf(" ")].toUpperCase +
-      letter.substring(indexOf(" ") + 1, indexOf("-")).toLowerCase();
-  } */
   if (letter.search("-") == true) {
     student.lastname = letter.substring(letter.lastIndexOf("-") + 1);
     student.lastname[0].toUpperCase() +
@@ -113,12 +100,7 @@ function preapareObject(jsonObject) {
     student.lastname = letter.substring(letter.lastIndexOf(" ") + 1);
     student.lastname[0].toUpperCase() +
       student.lastname.substring(1, -1).toLowerCase();
-    student.middlename = letter[
-      letter.indexOf(" ") + 1
-    ].toUpperCase(); /* +
-      letter
-        .substring(letter.indexOf(" ") + 2, letter.lastIndexOf(" "))
-        .toLowerCase(); */
+    student.middlename = letter[letter.indexOf(" ") + 1].toUpperCase();
   }
 
   if (noOfSpaces == 1) {
@@ -152,7 +134,7 @@ function preapareObject(jsonObject) {
     console.log(bloodArray);
     let Pure = bloodArray.pure;
     let Half = bloodArray.half;
-    if (bloodArray.pure.some(blood => blood.pure === student.lastname)) {
+    if (bloodArray.pure.some((blood) => blood.pure === student.lastname)) {
       alert("Object found inside the array.");
     } else {
       alert("Object not found.");
@@ -174,25 +156,19 @@ function displayList(student) {
   student.forEach(showStudent);
 }
 function showStudent(student) {
-  console.log(student);
+  //console.log(student);
   let template = document.querySelector("template").content;
   const copy = template.cloneNode(true);
   copy.querySelector(".fullName span.one").textContent = student.firstname;
-  copy.querySelector(".fullName span.two").textContent = student.middletname;
+  copy.querySelector(".fullName span.two").textContent = student.middlename;
   copy.querySelector(".fullName span.three").textContent = student.lastname;
-  //(student.firstname)+" "+student.middlename + " "+student.lasttname
-  //copy.querySelector(".middleName").textContent = student.middlename;
-  //copy.querySelector(".lastName").textContent = student.lastname;
-  //copy.querySelector(".nickName").textContent = student.nickname;
-
-  //copy.querySelector(".gender").textContent = student.gender;
   copy.querySelector(".house").textContent = student.house;
   //ADDED MODAL ON CLICK ON BUTTON
   const modal = document.querySelector(".modal-background");
   modal.addEventListener("click", () => {
     modal.classList.add("hide");
   });
-  copy.querySelector("button").addEventListener("click", showStudents => {
+  copy.querySelector("button").addEventListener("click", (showStudents) => {
     showDetails(student);
   });
 
@@ -219,19 +195,13 @@ function showStudent(student) {
       "_" +
       student.firstname[0] +
       ".png";
-
-    /*   OR STATEMENT
-      ("imgs/" + students.house.toLowerCase() + ".jpg") |
-      ("imgs/" + students.house + ".jpg"); */
     modal.classList.remove("hide");
     return fullname;
   }
 
+  //filter
+
+  let filter = allStudents.map((house) => allStudents.house);
+  //console.log(filter);
   document.querySelector("main").appendChild(copy);
-}
-//SORT
-let sortBtn = document.querySelector("button.sort");
-sortBtn.addEventListener("click", sortFunc);
-function sortFunc(fullname) {
-  letter.sort();
 }
