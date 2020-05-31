@@ -1,6 +1,6 @@
 "use strict";
 window.addEventListener("DOMContentLoaded", init);
-let bloodArray = [];
+let bloodArray = {};
 let allStudents = [];
 // The prototype for all students:
 const Student = {
@@ -11,12 +11,6 @@ const Student = {
   photo: "",
   house: "",
   blood: "",
-};
-
-const settings = {
-  filter: null,
-  sortBy: null,
-  sortDir: "asc",
 };
 
 function init() {
@@ -32,18 +26,15 @@ async function fetchStudentList() {
   // when loaded, prepare data objects
   prepareObjects(jsonData);
 }
-async function fetchFamilyList() {
-  const res = await fetch("http://petlatkea.dk/2020/hogwarts/families.json");
-  const jsonData = await res.json().then(bloodSplit);
+function fetchFamilyList() {
+  fetch("http://petlatkea.dk/2020/hogwarts/families.json")
+    .then((res) => res.json())
+    .then((bloods) => {
+      bloodArray = bloods;
+      console.log(bloods);
+    });
 
   // when loaded, prepare data objects
-}
-function bloodSplit(bloods) {
-  bloodArray = bloods;
-  console.log(bloodArray);
-  let Pure = bloodArray.pure;
-  let Half = bloodArray.half;
-  console.log(Half);
 }
 
 function prepareObjects(jsonData) {
@@ -129,17 +120,7 @@ function preapareObject(jsonObject) {
         .substring(letter.indexOf(" ") + 2, letter.lastIndexOf(" "))
         .toLowerCase();
   }
-  function bloodSplit(bloods) {
-    bloodArray = bloods;
-    console.log(bloodArray);
-    let Pure = bloodArray.pure;
-    let Half = bloodArray.half;
-    if (bloodArray.pure.some((blood) => blood.pure === student.lastname)) {
-      alert("Object found inside the array.");
-    } else {
-      alert("Object not found.");
-    }
-  }
+
   return student;
 }
 
@@ -168,9 +149,11 @@ function showStudent(student) {
   modal.addEventListener("click", () => {
     modal.classList.add("hide");
   });
-  copy.querySelector("button").addEventListener("click", (showStudents) => {
-    showDetails(student);
-  });
+  copy
+    .querySelector(".detail-btn")
+    .addEventListener("click", (showStudents) => {
+      showDetails(student);
+    });
 
   function showDetails(students) {
     console.log(students);
@@ -184,10 +167,9 @@ function showStudent(student) {
         ".modal-nickname span"
       ).textContent = `Nickname : ${student.nickname}`;
     }
-    modal.querySelector(".modal-house span").textContent = students.house;
     modal.dataset.theme = students.house;
     let logo = modal.querySelector("img.crest-image");
-    logo.src = "imgs/" + students.house + ".jpg";
+    logo.src = "imgs/" + students.house.toLowerCase() + ".jpg";
     let image = modal.querySelector("img.student-image");
     image.src =
       "images/" +
@@ -198,10 +180,16 @@ function showStudent(student) {
     modal.classList.remove("hide");
     return fullname;
   }
+  console.log(student.lastname);
 
-  //filter
-
-  let filter = allStudents.map((house) => allStudents.house);
-  //console.log(filter);
   document.querySelector("main").appendChild(copy);
 }
+
+//todos
+//blood
+//filterby the selected value
+//search
+//addto inquistorial
+//addto prefect
+//expel
+//hack
